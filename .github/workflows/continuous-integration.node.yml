@@ -23,10 +23,10 @@ jobs:
           npm ci --prefer-offline --no-audit
       - name: Execute format linting
         run: |
-          npm run format --if-present
+          npm run format
       - name: Execute linting
         run: |
-          npm run lint --if-present
+          npm run lint
       - name: Execute tests
         run: |
-          npm run test --if-present
+          npm run test

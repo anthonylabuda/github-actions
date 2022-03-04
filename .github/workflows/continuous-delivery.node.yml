@@ -26,7 +26,7 @@ jobs:
           npm run version
       - name: Execute build
         run: |
-          npm run build --if-present
+          npm run build
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
