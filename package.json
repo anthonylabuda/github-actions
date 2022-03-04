@@ -1,0 +1,32 @@
+{
+  "name": "github-actions",
+  "description": "Collection of GitHub Actions for CI/CD",
+  "version": "1.0.0",
+  "author": "Anthony LaBuda",
+  "license": "GNU GPLv3",
+  "bugs": {
+    "url": "https://github.com/anthonylabuda/github-actions/issues"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "16.2.1",
+    "@commitlint/config-conventional": "16.2.1",
+    "husky": "7.0.4",
+    "rimraf": "3.0.2",
+    "standard-version": "9.3.2"
+  },
+  "homepage": "https://github.com/anthonylabuda/github-actions#readme",
+  "keywords": [
+    "actions",
+    "cicd",
+    "github"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonylabuda/github-actions.git"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "refresh:npm": "rimraf ./package-lock.json && rimraf ./node_modules/ && npm install",
+    "version": "standard-version"
+  }
+}

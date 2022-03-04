@@ -1,0 +1,40 @@
+name: Node.js - Continuous Delivery
+
+on:
+  workflow_call:
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2.4.0
+      - name: Configure user
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.5.1
+        with:
+          cache: npm
+          node-version: 16.14.0
+      - name: Install dependencies
+        run: |
+          npm ci --prefer-offline --no-audit
+      - name: Increment version
+        run: |
+          npm run version
+      - name: Execute build
+        run: |
+          npm run build --if-present
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
+      - name: Upload build-artifact
+        uses: actions/upload-artifact@v2.3.1
+        with:
+          name: build-artifact
+          path: dist/
